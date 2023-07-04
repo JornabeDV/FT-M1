@@ -7,8 +7,8 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
 
 ```javascript
-x = 1;
-var a = 5;
+x = 1; 
+var a = 5; 
 var b = 10;
 var c = function (a, b, c) {
    var x = 10;
@@ -24,16 +24,15 @@ var c = function (a, b, c) {
    console.log(b);
 };
 c(8, 9, 10);
-console.log(b);
-console.log(x);
+console.log(b); // b = 10
+console.log(x); // x = 1
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
-foo();
+console.log(bar); // undefined
+console.log(baz); // baz is not defined
 function foo() {
-   console.log('Hola!');
+   console.log('Hola!'); 
 }
 var bar = 1;
 baz = 2;
@@ -44,19 +43,19 @@ var instructor = 'Tony';
 if (true) {
    var instructor = 'Franco';
 }
-console.log(instructor);
+console.log(instructor); // instructor = 'Franco'
 ```
 
 ```javascript
 var instructor = 'Tony';
-console.log(instructor);
+console.log(instructor); // instructor = 'Tony'
 (function () {
    if (true) {
       var instructor = 'Franco';
-      console.log(instructor);
+      console.log(instructor); // instructor = 'Franco' 
    }
 })();
-console.log(instructor);
+console.log(instructor); // instructor = 'Tony'
 ```
 
 ```javascript
@@ -65,11 +64,11 @@ let pm = 'Franco';
 if (true) {
    var instructor = 'The Flash';
    let pm = 'Reverse Flash';
-   console.log(instructor);
-   console.log(pm);
+   console.log(instructor); // instructor = 'The Flash'
+   console.log(pm); // instructor = 'Reverse Flash'
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor); // instructor = 'The Flash'
+console.log(pm); // instructor = 'Franco'
 ```
 
 ### Coerción de Datos
@@ -77,22 +76,22 @@ console.log(pm);
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3" // 2
+"2" * "3" // 6
+4 + 5 + "px" // 9px
+"$" + 4 + 5 // $45
+"4" - 2 // 2
+"4px" - 2 // NaN
+7 / 0 // Infinity
+{}[0] // [0]
+parseInt("09") // 9
+5 && 2 // 2
+2 && 5 // 2
+5 || 0 // 5
+0 || 5 // 1
+[3]+[3]-[10] // 23
+3>2>1 // false
+[] == ![] // true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -103,8 +102,8 @@ parseInt("09")
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); // undefined.
+   console.log(foo()); // 2
 
    var a = 1;
    function foo() {
@@ -128,7 +127,7 @@ function getFood(food) {
    return snack;
 }
 
-getFood(false);
+getFood(false); // No devuelve nada. se cancela la función. // Si le ponemos "true" ejecuta la función.
 ```
 
 ### This
@@ -147,11 +146,11 @@ var obj = {
    },
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); // "Aurelio de Rosa"
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); // "Juan Perez"
 ```
 
 ### Event loop
@@ -160,14 +159,14 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
+   console.log(1); // PRIMERO
    setTimeout(function () {
-      console.log(2);
+      console.log(2); // SEGUNDO
    }, 1000);
    setTimeout(function () {
-      console.log(3);
+      console.log(3); // PRIMERO
    }, 0);
-   console.log(4);
+   console.log(4); // PRIMERO
 }
 
 printing();

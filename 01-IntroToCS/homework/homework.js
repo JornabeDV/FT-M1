@@ -83,7 +83,7 @@ function DecimalABinario(num) {
    };
 
    return binario.join('');
-
+   
 }
    
 module.exports = {

@@ -123,3 +123,22 @@ Noten, que cuando hacemos esto no ejecutamos un `throw`, ya que esperamos que al
 Links copados:
 
 * [Joyent](https://www.joyent.com/node-js/production/design/errors)
+
+ERRORES DE VARIABLES (MI INFO):
+
+* UNDEFINED: La palabra clave "undefined" en JavaScript indica que una variable ha sido declarada pero no se le ha asignado ningún valor. También se puede considerar como el valor predeterminado de una variable que no ha sido inicializada. Cuando intentas acceder a una variable que está sin definir, su valor será "undefined".
+
+    EJEMPLO:
+
+    var x;
+    console.log(x); // undefined
+
+En este caso, la variable x se ha declarado pero no se le ha asignado ningún valor, por lo que su valor es "undefined".
+
+NOT DEFINED: El término "not defined" se utiliza cuando intentas acceder a una variable que no ha sido declarada en absoluto. En este caso, el intérprete del lenguaje de programación arrojará un error indicando que la variable no está definida.
+
+  EJEMPLO:
+
+  console.log(y); // Error: y is not defined
+
+En este caso, se produce un error porque la variable "y" no ha sido declarada en ninguna parte del código.
