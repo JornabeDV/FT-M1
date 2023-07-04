@@ -1,14 +1,13 @@
 'use strict';
 
 function BinarioADecimal(num) {
-
    //Necesito las posiciones => RECORDAR que son de derecha a izquierda
    //Elevar la base 2 a las posiciones.
    //El resultado de la potencia lo multiplicamos por el numero binario.
    //Sumamos los resultados de todos los calculos respectivos a su posición.
 
    //1°RESOLUTION:
-   return parseInt(num, 2); 
+   // return parseInt(num, 2); 
    // Funcion parseInt: convierto una cadena binaria de texto a un número.
    // Funcion toString: permite convertir cualquier número en una cadena de texto.
 
@@ -21,7 +20,7 @@ function BinarioADecimal(num) {
    // for (let i = 0; i < num.length; i++) {
    //    const power = num.length - 1 - i;
    //    decimal += num[i] * 2 ** power;
-   // }
+   // };
    // return decimal;
 
    //4°RESOLUTION:
@@ -32,7 +31,7 @@ function BinarioADecimal(num) {
    //    const digito = parseInt(num[i]);
    //    numDecimal += digito * Math.pow(2, numPotencia);
    //    numPotencia ++;
-   // }
+   // };
    // return numDecimal;
 
    //5°RESOLUTION:
@@ -42,18 +41,46 @@ function BinarioADecimal(num) {
    // for (let i = 0; i < str.length; i++) {
    //    suma = 2**(str.length -i-1) * str[i];
    //    decimal += suma
-   // }
-   // return decimal
+   // };
+   // return decimal;
+
+   //6°RESOLUTION:
+   num = num.split('').reverse();
+   var suma = 0;
+
+   for (let i = 0; i < num.length; i++) {
+      suma += Math.pow(2, i) * num[i];
+   };
+   return suma;
 }
 
 function DecimalABinario(num) {
 
-   var binario = [];
+   //1°RESOLUTION:
+   // var binario = [];
+
+   // while (num !== 0){
+   //    binario.unshift(num % 2);
+   //    num = Math.floor(num / 2);
+   // };
+
+   // return binario.join('');
+
+   //2°RESOLUTION:
+   // let binario = '';
+   // while (num > 0){
+   //    binario += num % 2
+   //    num = Math.floor(num / 2);
+   // };
+   // return binario.split('').reverse().join('');
+
+   //3°RESOLUTION:
+   let binario = [];
 
    while (num !== 0){
-      binario.unshift(num % 2);
+      binario.unshift (num % 2)// lo mismo poner push y luego reverse.
       num = Math.floor(num / 2);
-   }
+   };
 
    return binario.join('');
 
