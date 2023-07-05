@@ -28,6 +28,7 @@
 Otro tema importante en JavaScript es `closures`. Veamos a que se refieren con un ejemplo:
 
 ```javascript
+
 function saludar( saludo ){
   return function( nombre ){
     console.log(saludo + ' ' + nombre);

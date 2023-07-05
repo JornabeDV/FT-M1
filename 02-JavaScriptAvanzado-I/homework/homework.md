@@ -79,18 +79,18 @@ console.log(pm); // instructor = 'Franco'
 6 / "3" // 2
 "2" * "3" // 6
 4 + 5 + "px" // 9px
-"$" + 4 + 5 // $45
+"$" + 4 + 5 // $45, primero concatena $4 y se transforma en "$4" string, luego suma
 "4" - 2 // 2
 "4px" - 2 // NaN
 7 / 0 // Infinity
 {}[0] // [0]
 parseInt("09") // 9
-5 && 2 // 2
-2 && 5 // 2
-5 || 0 // 5
-0 || 5 // 1
+5 && 2 // 2 // con el & siempre devuelve el de la derecha
+2 && 5 // 2 
+5 || 0 // 5 // el 0 es false, y el 5 es true. por lo tanto devuelve 5.
+0 || 5 // 5 // el 0 es false, y el 5 es true. por lo tanto devuelve 5.
 [3]+[3]-[10] // 23
-3>2>1 // false
+3>2>1 // false, compara 3 y 2 y da true y luego compara con 1 y ahí arroja el false. pero true si es igual a 1, true = 1
 [] == ![] // true
 ```
 
@@ -102,7 +102,7 @@ parseInt("09") // 9
 
 ```javascript
 function test() {
-   console.log(a); // undefined.
+   console.log(a); // undefined. 
    console.log(foo()); // 2
 
    var a = 1;

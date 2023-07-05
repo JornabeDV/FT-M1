@@ -138,7 +138,7 @@ En este caso, la variable x se ha declarado pero no se le ha asignado ningún va
 NOT DEFINED: El término "not defined" se utiliza cuando intentas acceder a una variable que no ha sido declarada en absoluto. En este caso, el intérprete del lenguaje de programación arrojará un error indicando que la variable no está definida.
 
   EJEMPLO:
-
+  
   console.log(y); // Error: y is not defined
 
 En este caso, se produce un error porque la variable "y" no ha sido declarada en ninguna parte del código.
