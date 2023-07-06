@@ -13,10 +13,54 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
+//RESOLUCION 1: Manera Factorial
 
-function nFactorial(n) {}
+// function nFactorial(n) {
+//   if (n === 0 || n === 1) return 1;
+//   else if (n < 0) return 0;
+//   return n * nFactorial(n - 1)
+// }
 
-function nFibonacci(n) {}
+// RESOLUCION 2: Manera Factorial
+
+// function nFactorial(n) {
+//   if (n === 0 || n === 1) {
+//   return 1
+//   } else if (n < 0) {
+//   return 0
+//   } else {
+//   return n * nFactorial(n - 1)
+//   }
+// }
+
+// RESOLUCION 3: Manera Iterativa
+
+function nFactorial(n) {
+  if (n === 0 || n === 1) {
+    return 1;
+  } else {
+    var factorial = 1;
+    for (var i = 2; i <= n; i++) {
+      factorial *= i;
+    }
+    return factorial;
+  }
+}
+
+// RESOLUCION 1: Manera Factorial
+
+function nFibonacci(n) {
+  if (n <= 0) return 0;
+  else if (n === 1 || n === 2) return 1;
+  return nFibonacci(n - 1) + nFibonacci(n - 2)
+}
+
+// RESOLUCION 2: Manera Iterativa
+
+
+
+
+
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -27,7 +71,43 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {}
+//FUNCION CON CLASES:
+
+class Queue {
+  constructor() {
+    this.arr = [];
+  }
+  enqueue(data) {
+    return this.arr.push(data);
+  }
+  dequeue() {
+    if (this.arr.length === 0) return undefined;
+    return this.arr.shift();
+  }
+  size() {
+    return this.arr.length;
+  }
+} 
+
+//FUNCION CONSTRUCTORA:
+
+// function Queue() { 
+//   this.arr = [];
+// } 
+
+// Queue.prototype.enqueue = function(data){
+//   return this.arr.push(data)
+// };
+
+// Queue.prototype.dequeue = function() {
+// if(this.arr.length === 0) return undefined;
+// return this.arr.shift()
+// };
+
+// Queue.prototype.size = function() {
+// return this.arr.length
+// };  
+
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {
