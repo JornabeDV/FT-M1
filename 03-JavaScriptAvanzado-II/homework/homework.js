@@ -19,13 +19,13 @@ function counter() {
 
   let counterCreado = 0;
   return function(){
-      counterCreado++;
-      return counterCreado;
+      counterCreado++;      //ESTAS DOS LINEAS SE PUEDE SIMPLICAR EN UNA SOLA: return ++ counterCreado
+      return counterCreado; // 
   };
 }
 
-let counterFunction = counter();
-console.log(counterFunction());
+// let counterFunction = counter();
+// console.log(counterFunction());
 
 // /* Ejercicio 2
 // Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback 
@@ -70,19 +70,26 @@ console.log(counterFunction());
 
 
   // RESOLUCION 2:
+  // function cacheFunction(cb) {
+  //   let objC = {}
+  //   return function(arg) {
+  //     if (objC.hasOwnProperty(arg)){
+  //       return objC[arg]
+  //     }
+  //     objC[arg] = cb(arg)
+  //     return objC[arg]
+  //   }
+  // }
+  // RESOLUCION 3:
   function cacheFunction(cb) {
     let objC = {}
     return function(arg) {
-      if (objC.hasOwnProperty(arg)){
-        return objC[arg]
-      }
-      objC[arg] = cb(arg)
-      return objC[arg]
+      if (objC.hasOwnProperty(arg)) return objC[arg]
+    return objC[arg] = cb(arg)
     }
   }
 
-
-  // RESOLUCION 3:
+  // RESOLUCION 4:
 
   // function cacheFunction(cd) {
   //   let objC = {};
@@ -111,8 +118,8 @@ var alumno = {
 };
 
 function getNombre() {
-  return this.nombre;
-}
+  return this.nombre
+};
 
 /*
   Ejercicio 3
@@ -120,8 +127,8 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor = getNombre.bind(instructor);
-let getNombreAlumno = getNombre.bind(alumno);
+let getNombreInstructor = getNombre.bind(instructor); // METODO BIND SI O SI GUARDAR EN UNA VARIABLE.
+let getNombreAlumno = getNombre.bind(alumno); // METODO BIND SI O SI GUARDAR EN UNA VARIABLE.
 
 getNombreInstructor();
 getNombreAlumno();
@@ -134,11 +141,17 @@ getNombreAlumno();
 
 function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
     return delimitadorIzquierda + cadena + delimitadorDerecha;
-}
+};
 
-let textoAsteriscos = crearCadena.bind(" ", "*", "*");
-let textoGuiones = crearCadena.bind(" ", "-", "-");
-let textoUnderscore = crearCadena.bind(" ", "_" , "_");
+//RESOLUCION 1:
+// let textoAsteriscos = crearCadena.bind(" ", "*", "*");
+// let textoGuiones = crearCadena.bind(" ", "-", "-");
+// let textoUnderscore = crearCadena.bind(" ", "_" , "_");
+
+//RESOLUCION 2:
+let textoAsteriscos = crearCadena.bind(this, "*", "*"); // PRIMER PARAMATRO ES THIS POR CONVENCIÓN. BUENAS PRÁCTICAS.
+let textoGuiones = crearCadena.bind(this, "-", "-");
+let textoUnderscore = crearCadena.bind(this, "_" , "_");
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
