@@ -15,11 +15,16 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 //RESOLUCION 1: Manera Factorial
 
-// function nFactorial(n) {
-//   if (n === 0 || n === 1) return 1;
-//   else if (n < 0) return 0;
-//   return n * nFactorial(n - 1)
-// }
+function nFactorial(n) {
+  // Caso de corte.
+  if (n === 0 || n === 1) return 1; 
+  //Caso numeros con decimales.
+  if (Number.isInteger(n) !==true) throw new Error("Por favor solo pasar numeros enteros");
+  // Validación
+  if (n < 0) return 0; 
+// Función recursiva.
+  return n * nFactorial(n - 1) 
+}
 
 // RESOLUCION 2: Manera Factorial
 
@@ -33,34 +38,32 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 //   }
 // }
 
-// RESOLUCION 3: Manera Iterativa
 
-function nFactorial(n) {
-  if (n === 0 || n === 1) {
-    return 1;
-  } else {
-    var factorial = 1;
-    for (var i = 2; i <= n; i++) {
-      factorial *= i;
-    }
-    return factorial;
-  }
-}
+// RESOLUCION 1: Manera Iterativa EJERCICIO FACTORIAL
+
+// function nFactorial(n) {
+//   if (n === 0 || n === 1) {
+//     return 1;
+//   } else {
+//     var factorial = 1;
+//     for (var i = 2; i <= n; i++) {
+//       factorial *= i;
+//     }
+//     return factorial;
+//   }
+// }
 
 // RESOLUCION 1: Manera Factorial
 
 function nFibonacci(n) {
+  //Casos de corte.
   if (n <= 0) return 0;
-  else if (n === 1 || n === 2) return 1;
-  return nFibonacci(n - 1) + nFibonacci(n - 2)
+  else if (n === 1) return 1;
+  // Parte recursiva.
+  return nFibonacci(n - 1) + nFibonacci(n - 2) // Recursión: llamarse a sí misma. 
 }
 
-// RESOLUCION 2: Manera Iterativa
-
-
-
-
-
+// RESOLUCION 2: Manera Iterativa 
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -71,7 +74,9 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-//FUNCION CON CLASES:
+//FUNCIÓN CON CLASES: METODO QUEUE (COLA)   siempre pusheo y saco al principio con un SHIFT 
+ 
+// EL MÉTODO PILA: siempre pusheo y saco del final con POP. METODO FIFO. FIRST IN FIRST OUT.
 
 class Queue {
   constructor() {
@@ -81,7 +86,7 @@ class Queue {
     return this.arr.push(data);
   }
   dequeue() {
-    if (this.arr.length === 0) return undefined;
+    // if (this.arr.length === 0) return undefined; // NO ES NECESARIA ESTA LÍNEA.
     return this.arr.shift();
   }
   size() {
@@ -89,19 +94,19 @@ class Queue {
   }
 } 
 
-//FUNCION CONSTRUCTORA:
+//FUNCION CONSTRUCTORA:  METODO QUEUE (COLA). METODO FIFO. FIRST IN FIRST OUT.
 
 // function Queue() { 
 //   this.arr = [];
 // } 
 
 // Queue.prototype.enqueue = function(data){
-//   return this.arr.push(data)
+//   return this.arr.push(data) // METODO QUE PONE EL DATO EN EL PRIMER LUGAR DEL ARRAY
 // };
 
 // Queue.prototype.dequeue = function() {
-// if(this.arr.length === 0) return undefined;
-// return this.arr.shift()
+// if(this.arr.length === 0) return undefined; // NO ES NECESARIA ESTÁ LÍNEA, POR DEFECTO SI EL ARRAY ESTÁ VACIO TIRA UNDEFINED.
+// return this.arr.shift() // METODO QUE PONE EL DATO EN EL PRIMER LUGAR DEL ARRAY
 // };
 
 // Queue.prototype.size = function() {

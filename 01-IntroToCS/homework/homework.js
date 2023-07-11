@@ -78,7 +78,7 @@ function DecimalABinario(num) {
    let binario = [];
 
    while (num !== 0){
-      binario.unshift (num % 2)// lo mismo poner push y luego reverse.
+      binario.unshift (num % 2)// Lo mismo poner push y luego reverse.
       num = Math.floor(num / 2);
    };
 
