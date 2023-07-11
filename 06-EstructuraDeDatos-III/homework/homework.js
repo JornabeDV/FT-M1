@@ -35,15 +35,28 @@ let tree = new BinarySearchTree(8)
 */
 //- SIZE: retorna la cantidad total de nodos del árbol.
 BinarySearchTree.prototype.size = function () { 
-   //1-NODO HOJA (NO TIENE HIJO == HIJOS NULL) //Este es mi caso de corte.
+   //1-SI NO HAY NADA.
+   if (!this.value) return null;
+   //2-NODO HOJA (NO TIENE HIJO == HIJOS NULL) //Este es mi caso de corte.
    if (!this.left && !this.right) return 1;
-    //2- UN NODO QUE TENGA NODOS A LA DERECHA UNICAMENTE.
+   //3- UN NODO QUE TENGA NODOS A LA DERECHA UNICAMENTE.
    if (!this.left && this.right) return 1 + this.right.size();
-    //3-UN NODO QUE TENGA NODOS A LA IZQUIERDA UNICAMENTE.
+   //4-UN NODO QUE TENGA NODOS A LA IZQUIERDA UNICAMENTE.
     if (this.left && !this.right) return 1 + this.left.size();
-    //4-UN NODO QUE TENGA TANTO A LA IZQUIERDA COMO A LA DERECHA.
+   //5-UN NODO QUE TENGA TANTO A LA IZQUIERDA COMO A LA DERECHA.
     if (this.left && this.right) return 1 + this.left.size() + this.right.size();
 }
+
+//REFACTORING: DEL MÉTODO SIZE.
+BinarySearchTree.prototype.size = function () { 
+   let counter = 1;
+
+   if (this.right) counter += this.right.size();
+   if (this.left) counter += this.left.size();
+
+   return counter;
+}
+
 
 // let tree = new BinarySearchTree(20); // Ingresamos un valor para recorrer el árbol.
 //- INSERT: agrega un nodo en el lugar correspondiente.
@@ -51,7 +64,7 @@ BinarySearchTree.prototype.size = function () {
 BinarySearchTree.prototype.insert = function (value) { // Como sabíamos que ibamos a insertar, le pasamos por parámetro el VALUE.
    if (value < this.value) { //Es menor y va a la izquierda.
       //10////////20///// El valor que recibo es menor que mi value (20), entro a la izquierda.
-         if (!this.left) this.left = new BinarySearchTree(value); //Si el valor del nodo de la izquierda es NULL insertá el nuevo valor.
+         if (!this.left) this.left = new BinarySearchTree(value); // Si el valor del nodo de la izquierda es NULL insertá el nuevo valor.
          else this.left.insert(value) // Sino insertá el valor del nodo.
    }  else if (value > this.value) {
          if (!this.right) this.right = new BinarySearchTree(value); //Entra en este IF cuando el nodo izquierdo tenga valor. Hasta validar que el nodo que sigue a la izq. es NULL.
@@ -75,22 +88,27 @@ BinarySearchTree.prototype.contains = function (value) {
 //
 //- DEPTHFIRSTFOREACH: recorre el árbol siguiendo el orden depth first (DFS) en cualquiera de sus variantes, según se indique por parámetro ("post-order", "pre-order", o "in-order"). Nota: si no se provee ningún parámetro, hará el recorrido "in-order" por defecto.
 // Recibirá un CB por parámetro y el orden de como se ejecutará la function.
-BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
+BinarySearchTree.prototype.depthFirstForEach = function (cb, order) { //NO ENTRA EN EL CHECKPOINT!!!!
 
    if (order === "pre-order") { // DESDE ARRIBA HACIA ABAJO TODO A LA IZQUIERDA, LUEGO VUELVE ENTRANDO A LA DERECHA.
-      cb(this.value)
-      if(this.left) this.left.depthFirstForEach(cb, order)
-      if(this.right) this.right.depthFirstForEach(cb, order)
+      cb(this.value) //NODO.
+      if(this.left) this.left.depthFirstForEach(cb, order) //IZQUIERDA.
+      if(this.right) this.right.depthFirstForEach(cb, order) //DERECHA.
    } else if (order === "post-order"){ // DESDE ABAJO HACIA ARRIBA. ENTRA PRIMERO EN IZQUIERDA Y LUEGO DERECHA ANTES DE SUBIR UN NIVEL.
-      if(this.left) this.left.depthFirstForEach(cb, order)
-      if(this.right) this.right.depthFirstForEach(cb, order)
-      cb(this.value)
+      if(this.left) this.left.depthFirstForEach(cb, order) //IZQUIERDA
+      if(this.right) this.right.depthFirstForEach(cb, order) //DERECHA
+      cb(this.value) //NODO
    }
    else { // SI NO SE PASA NINGÚN PARÁMETRO SE HARÁ POR DEFECTO "IN-ORDER".
-      if(this.left) this.left.depthFirstForEach(cb, order)
-      cb(this.value)
-      if(this.right) this.right.depthFirstForEach(cb, order)
+      if(this.left) this.left.depthFirstForEach(cb, order) // IZQUIERDA.
+      cb(this.value) // NODO.
+      if(this.right) this.right.depthFirstForEach(cb, order) //DERECHA.
    }
+
+//PEDIDO: IN-ORDER : IZQUIERDA, NODO , DERECHA.
+//PEDIDO: PRE-ORDER : NODO, IZQUIERDA, DERECHA. 
+//PEDIDO: POST-ORDER : IZQUIERDA, DERECHA, NODO.
+
 /*
                8        NIVEL 0
             /    \   
@@ -113,8 +131,8 @@ BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
 }
 
 
-//- BREADTHFIRSTFOREACH: recorre el árbol siguiendo el orden breadth first (BFS)
-BinarySearchTree.prototype.breadthFirstForEach = function (cb, array = []) {
+//- BREADTHFIRSTFOREACH: recorre el árbol siguiendo el orden breadth first (BFS) . Comportamiento FIFO.
+BinarySearchTree.prototype.breadthFirstForEach = function (cb, array = []) { //NO ENTRA EN EL CHECKPOINT!!!!
 /*
                     0
                   /   \
